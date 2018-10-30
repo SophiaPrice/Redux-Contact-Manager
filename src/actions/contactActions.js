@@ -4,11 +4,11 @@ import {
   ADD_CONTACT,
   GET_CONTACT,
   UPDATE_CONTACT
-} from "./types";
-import axios from "axios";
+} from './types';
+import axios from 'axios';
 
 export const getContacts = () => async dispatch => {
-  const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+  const res = await axios.get('https://jsonplaceholder.typicode.com/users');
   dispatch({
     type: GET_CONTACTS,
     payload: res.data
@@ -33,7 +33,7 @@ export const deleteContact = id => async dispatch => {
       payload: id
     });
   } catch (e) {
-    console.log("Error: " + e);
+    console.log('Error: ' + e);
     // Using JSONPlaceholder will give 404 on added objects, so remove from DOM in catch
     dispatch({
       type: DELETE_CONTACT,
@@ -44,11 +44,22 @@ export const deleteContact = id => async dispatch => {
 
 export const addContact = contact => async dispatch => {
   const res = await axios.post(
-    "https://jsonplaceholder.typicode.com/users",
+    'https://jsonplaceholder.typicode.com/users',
     contact
   );
   dispatch({
     type: ADD_CONTACT,
+    payload: res.data
+  });
+};
+
+export const updateContact = contact => async dispatch => {
+  const res = await axios.put(
+    `https://jsonplaceholder.typicode.com/users/${contact.id}`,
+    contact
+  );
+  dispatch({
+    type: UPDATE_CONTACT,
     payload: res.data
   });
 };
