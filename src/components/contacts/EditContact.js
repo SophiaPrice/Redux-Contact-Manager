@@ -3,7 +3,6 @@ import TextInputGroup from '../layout/TextInputGroup';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getContact, updateContact } from '../../actions/contactActions';
-import { UPDATE_CONTACT } from '../../actions/types';
 
 class EditContact extends Component {
   state = {
